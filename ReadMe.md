@@ -20,14 +20,14 @@ The bot is designed to run on **Railway** and demonstrates Claude tool-calling w
 ---
 
 ## Project Structure
-
+```
 .
 ├── index.js # Main bot logic (Telegram + Claude)
 ├── tools.js # News scraping and email tools
 ├── package.json
 ├── .env.example # Environment variable template
 └── README.md
-
+```
 
 ---
 
@@ -90,12 +90,43 @@ EMAIL_PASSWORD=your_email_app_password
 --- 
 
 ## Deployment (Railway)
-- Push the repo to GitHub
-- Create a new Railway project
-- Connect the GitHub repo
-- Add environment variables in Railway
-- Deploy
 
+### Method 1: Using Railway CLI
+```bash
+# Install Railway CLI
+npm install -g @railway/cli
+
+# Login to Railway
+railway login
+
+# Initialize project
+railway init
+
+# Deploy
+railway up
+
+# Add environment variables
+eg. railway variables set TELEGRAM_TOKEN="your_token"
+
+```
+### Method 2: Using GitHub
+```bash
+# Initialize git
+git init
+git add .
+git commit -m "Initial commit"
+
+# Push to GitHub
+git remote add origin https://github.com/yourusername/your-repo.git
+git push -u origin main
+
+# Then in Railway:
+# 1. Go to railway.app/dashboard
+# 2. Click "New Project"
+# 3. Select "Deploy from GitHub"
+# 4. Choose your repository
+# 5. Add environment variables in Railway dashboard
+```
 ⚠️ Polling works locally but webhooks are recommended for production
  
 ---
@@ -103,7 +134,7 @@ EMAIL_PASSWORD=your_email_app_password
 ## Notes & Limitations
 
 - BBC scraping relies on page structure and may break if BBC updates their HTML
-- Email example uses Gmail — for production, use:
+- Email uses Gmail. Adjust if you need other providers:
 ```
 SendGrid
 Mailgun
